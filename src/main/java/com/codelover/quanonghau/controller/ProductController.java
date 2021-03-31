@@ -3,6 +3,7 @@ package com.codelover.quanonghau.controller;
 import com.codelover.quanonghau.entity.Product;
 import com.codelover.quanonghau.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,5 +54,17 @@ public class ProductController {
 
         productService.createProduct(pro);
         return new ResponseEntity<>(pro, HttpStatus.OK);
+    }
+
+    // Full text search
+    @GetMapping(value = "/search", produces = "application/json")
+    public ResponseEntity<?> getProductById(@Param(value = "keyword") String keyword){
+        List<Product> results = productService.search(keyword);
+
+        if(results.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(results, HttpStatus.OK);
     }
 }

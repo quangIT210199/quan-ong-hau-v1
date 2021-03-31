@@ -15,4 +15,6 @@ public interface ProductService {
     Product findByProductCode(String productCode);
 
     int count();
+
+    List<Product> search(String keyword);
 }

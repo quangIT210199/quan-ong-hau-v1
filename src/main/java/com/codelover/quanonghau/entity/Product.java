@@ -41,6 +41,4 @@ public class Product implements Serializable {
     @ManyToOne
     @JoinColumn(name = "procategory_id")
     private ProductCategory productCategory;
-
-
 }

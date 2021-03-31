@@ -45,4 +45,9 @@ public class ProductServiceImpl implements ProductService {
     public int count() {
         return (int)productRepository.count();
     }
+
+    @Override
+    public List<Product> search(String keyword) {
+        return productRepository.search(keyword);
+    }
 }
