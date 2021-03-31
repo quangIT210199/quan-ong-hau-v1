@@ -28,9 +28,6 @@ public class ProductCategory implements Serializable {
     @Column(name = "procategory_des", nullable = false)
     private String proCategoryDes;
 
-    @OneToMany(mappedBy = "productCategory")// ánh xạ vào Table là 1 bảng Product
-    private List<Product> products = new ArrayList<>();
-
     public Long getId() {
         return id;
     }
@@ -61,13 +58,5 @@ public class ProductCategory implements Serializable {
 
     public void setProCategoryDes(String proCategoryDes) {
         this.proCategoryDes = proCategoryDes;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }

@@ -12,7 +12,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findProductByProductCode(String productCode);
 
-    @Query(value = "SELECT * FORM product WHERE " +
+    @Query(value = "SELECT * FROM product WHERE " +
             "MATCH (product_name, product_code) " +
             "AGAINST (?1)", nativeQuery = true)
     List<Product> search(String keyword);

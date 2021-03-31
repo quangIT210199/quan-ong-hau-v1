@@ -30,8 +30,57 @@ public class ProductHistory implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+//    @ManyToOne
+//    @JoinColumn(name = "product_id")
+//    private Product product;
+    @Column(name = "product_id", nullable = false )
+    private Long productId;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDateBuy() {
+        return dateBuy;
+    }
+
+    public void setDateBuy(String dateBuy) {
+        this.dateBuy = dateBuy;
+    }
+
+    public int getNumberProduct() {
+        return numberProduct;
+    }
+
+    public void setNumberProduct(int numberProduct) {
+        this.numberProduct = numberProduct;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
 }
