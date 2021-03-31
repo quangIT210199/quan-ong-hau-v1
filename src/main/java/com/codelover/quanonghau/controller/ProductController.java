@@ -1,6 +1,8 @@
 package com.codelover.quanonghau.controller;
 
 import com.codelover.quanonghau.entity.Product;
+import com.codelover.quanonghau.entity.ProductCategory;
+import com.codelover.quanonghau.service.ProCategoryService;
 import com.codelover.quanonghau.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -20,6 +22,9 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    ProCategoryService proCategoryService;
 
     @GetMapping(value = "/products", produces = "application/json")
     public ResponseEntity<?> findAllProduct(){
@@ -46,14 +51,15 @@ public class ProductController {
     // add new Product
     @PostMapping(value = "/products", produces = "application/json")
     public ResponseEntity<?> createProduct(@RequestBody Product product){
-        Product pro = productService.findByProductCode(product.getProductCode());
 
-        if(pro != null){ // sản phẩm đã tồn tại
+        ProductCategory productCategory = proCategoryService.findById(product.getCategoryId());
+        if(productCategory == null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        productService.createProduct(pro);
-        return new ResponseEntity<>(pro, HttpStatus.OK);
+        Product pro = productService.createProduct(product);
+
+        return  new ResponseEntity<>(pro, HttpStatus.OK);
     }
 
     // Full text search

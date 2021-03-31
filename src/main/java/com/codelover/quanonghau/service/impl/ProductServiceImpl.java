@@ -11,13 +11,17 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private static final String PRODUCT_CODE ="SP_";
+
     @Autowired
     ProductRepository productRepository;
 
     @Override
     public Product createProduct(Product product) {
+        long count = productRepository.count();
+        product.setProductCode(PRODUCT_CODE + count);
 
-        return null;
+        return productRepository.save(product);
     }
 
     @Override
