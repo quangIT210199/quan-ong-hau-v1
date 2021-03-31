@@ -32,54 +32,15 @@ public class Product implements Serializable {
     @Column(name = "created_date", nullable = false )
     private String createdDate;
 
+    @Column(name = "description")
+    private String description;
+
     @OneToMany(mappedBy = "product")
     private List<ProductHistory> history;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "procategory_id")
+    private ProductCategory productCategory;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getNumberProduct() {
-        return numberProduct;
-    }
-
-    public void setNumberProduct(int numberProduct) {
-        this.numberProduct = numberProduct;
-    }
-
-    public String getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public List<ProductHistory> getHistory() {
-        return history;
-    }
-
-    public void setHistory(List<ProductHistory> history) {
-        this.history = history;
-    }
 }
