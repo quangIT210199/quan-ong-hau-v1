@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table
+@Table(name = "product_history")
 public class ProductHistory implements Serializable {
 
     private static final long serialVersionUID = 1L;
